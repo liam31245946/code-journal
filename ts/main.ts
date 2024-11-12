@@ -19,7 +19,6 @@ interface Input {
 }
 
 function submit(event: Event): void {
-  console.log('running');
   event?.preventDefault();
 
   const formInput: Input = {
