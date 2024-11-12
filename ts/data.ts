@@ -5,26 +5,24 @@ interface Data {
   nextEntryId: number;
 }
 
-const data: Data = {
-  view: 'entry-form',
-  entries: [],
-  editing: null,
-  nextEntryId: 1,
-};
-
-const dataJSON = JSON.stringify(data);
-
-function storeData(key: string, data: any): any {
-  localStorage.setItemItem(key, dataJSON);
-  return data;
+function storeData(): void {
+  const dataJSON = JSON.stringify(data);
+  localStorage.setItem('data', dataJSON);
 }
 console.log(storeData);
 
-function readData(key: string): any {
-  const getJSON = localStorage.getItem(key);
+const data: Data = readData();
+
+function readData(): Data {
+  const getJSON = localStorage.getItem('data');
   if (getJSON) {
-    return JSON.parse(dataJSON);
+    return JSON.parse(getJSON);
   } else {
-    return 'Error';
+    return {
+      view: 'entry-form',
+      entries: [],
+      editing: null,
+      nextEntryId: 1,
+    };
   }
 }
