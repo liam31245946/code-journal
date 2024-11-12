@@ -1,18 +1,10 @@
-interface Data {
-  view: string;
-  entries: Input[];
-  editing: Input | null;
-  nextEntryId: number;
-}
-
-function writeData(): void {
+'use strict';
+function writeData() {
   const dataJSON = JSON.stringify(data);
   localStorage.setItem('data', dataJSON);
 }
-
-const data: Data = readData();
-
-function readData(): Data {
+const data = readData();
+function readData() {
   const getJSON = localStorage.getItem('data');
   if (getJSON) {
     return JSON.parse(getJSON);
