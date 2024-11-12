@@ -13,18 +13,29 @@ $url.addEventListener('input', input);
 const $form = document.querySelector('#form') as HTMLFormElement;
 if (!$form) throw new Error('form query failed');
 
-interface Input {
-  entryId: number;
-  note: string;
+interface Input extends HTMLFormControlsCollection {
+  entryId: HTMLInputElement;
+  note: HTMLInputElement;
+  title: HTMLInputElement;
+  url: HTMLInputElement;
 }
 
 function submit(event: Event): void {
   event?.preventDefault();
+  const $element = $form.elements as Input;
 
-  const formInput: Input = {
-    entryId: data.nextEntryId,
-    note: $form.value,
+  const entryId = data.nextEntryId;
+  const title = $element.title.value;
+  const url = $element.url.value;
+  const note = $element.note.value;
+
+  const formInput: any = {
+    entryId,
+    title,
+    url,
+    note,
   };
+
   data.nextEntryId++;
   data.entries.push(formInput);
   $form.reset();

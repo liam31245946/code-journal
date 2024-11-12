@@ -11,11 +11,17 @@ $url.addEventListener('input', input);
 const $form = document.querySelector('#form');
 if (!$form) throw new Error('form query failed');
 function submit(event) {
-  console.log('running');
   event?.preventDefault();
+  const $element = $form.elements;
+  const entryId = data.nextEntryId;
+  const title = $element.title.value;
+  const url = $element.url.value;
+  const note = $element.note.value;
   const formInput = {
-    entryId: data.nextEntryId,
-    note: $form.value,
+    entryId,
+    title,
+    url,
+    note,
   };
   data.nextEntryId++;
   data.entries.push(formInput);
