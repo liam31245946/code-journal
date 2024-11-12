@@ -11,6 +11,7 @@ $url.addEventListener('input', input);
 const $form = document.querySelector('#form');
 if (!$form) throw new Error('form query failed');
 function submit(event) {
+  console.log('running');
   event?.preventDefault();
   const formInput = {
     entryId: data.nextEntryId,
