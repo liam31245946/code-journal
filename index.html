@@ -17,39 +17,48 @@
   </head>
   <body>
     <header>
-      <div class="container"></div>
+      <div class="container">
+        <div class="row">
+          <div class="column-full">
+            <h1>Code Journal</h1>
+          </div>
+        </div>
+      </div>
     </header>
     <main class="container">
+      <div class="row">
+        <div class="column-full">
+          <h1>New Entry</h1>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column-half">
+          <img src="./images/placeholder-image-square.jpg" />
+        </div>
+
+        <div class="column-half">
+          <h4>Title</h4>
+          <label for="user-title"></label>
+          <input required name="title" type="text" id="user-title" />
+          <h4>Photo Url</h4>
+          <label for="user-url"></label>
+          <input required name="name" type="url" id="user-url" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="column-full">
+          <h4>Notes</h4>
+          <label for="user-note"></label>
+          <input required name="name" type="url" id="user-note" />
+          <div class="columnn-full"><button>save</button></div>
+        </div>
+      </div>
+
       <div data-view="entry-form"></div>
       <div data-view="entries" class="hidden"></div>
     </main>
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
-    <div class="upper">
-      <h1 class="upper-h1">Code Journal</h1>
-    </div>
-
-    <div class="mid">
-      <div class="left-mid">
-        <h1>New Entry</h1>
-        <img
-          class="img"
-          src=".images/place-image-square.jpg"
-          alt="place-holder-image" />
-      </div>
-
-      <div class="right-mid">
-        <h5>Title</h5>
-        <input type="text" class="input" />
-        <h5>Photo URL</h5>
-        <input type="url" class="input" />
-      </div>
-    </div>
-
-    <div class="bottom">
-      <h5>Notes</h5>
-      <textarea class="textarea"></textarea>
-      <div><button class="save">Save</button></div>
-    </div>
   </body>
 </html>
