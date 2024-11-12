@@ -37,7 +37,7 @@ function submit(event: Event): void {
   };
 
   data.nextEntryId++;
-  data.entries.push(formInput);
+  data.entries.unshift(formInput);
   $form.reset();
   writeData();
 }
