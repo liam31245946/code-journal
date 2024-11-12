@@ -5,11 +5,10 @@ interface Data {
   nextEntryId: number;
 }
 
-function storeData(): void {
+function writeData(): void {
   const dataJSON = JSON.stringify(data);
   localStorage.setItem('data', dataJSON);
 }
-console.log(storeData);
 
 const data: Data = readData();
 
