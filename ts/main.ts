@@ -10,8 +10,8 @@ function input(): void {
 
 $url.addEventListener('input', input);
 
-const $note = document.querySelector('#user-note') as HTMLInputElement;
-if (!$note) throw new Error('note query failed');
+const $form = document.querySelector('#form') as HTMLFormElement;
+if (!$form) throw new Error('form query failed');
 
 interface Input {
   entryId: number;
@@ -23,10 +23,12 @@ function submit(event: Event): void {
 
   const formInput: Input = {
     entryId: data.nextEntryId,
-    note: $note.value,
+    note: $form.value,
   };
   data.nextEntryId++;
   data.entries.push(formInput);
+  $form.reset();
+  writeData();
 }
 
-$note.addEventListener('submit', submit);
+$form.addEventListener('submit', submit);

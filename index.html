@@ -37,19 +37,24 @@
           <img src="./images/placeholder-image-square.jpg" />
         </div>
 
-        <div class="column-half">
-          <label for="user-title">Title</label>
-          <input required name="title" type="text" id="user-title" />
+        <form id="form">
+          <div class="column-half">
+            <label for="user-title">Title</label>
+            <input required name="title" type="text" id="user-title" />
 
-          <label for="user-url">Photo URL</label>
-          <input required name="link" type="url" id="user-url" />
-        </div>
+            <label for="user-url">Photo URL</label>
+            <input required name="link" type="url" id="user-url" />
+          </div>
+        </form>
       </div>
+
       <div class="row">
         <div class="column-full">
           <label for="user-note">Notes</label>
           <input required name="note" type="text" id="user-note" />
-          <div class="columnn-full"><button class="save">save</button></div>
+          <div class="column-full">
+            <button type="submit">Save</button>
+          </div>
         </div>
       </div>
 

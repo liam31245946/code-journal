@@ -8,15 +8,17 @@ function input() {
   $img.src = $url.value;
 }
 $url.addEventListener('input', input);
-const $note = document.querySelector('#user-note');
-if (!$note) throw new Error('note query failed');
+const $form = document.querySelector('#form');
+if (!$form) throw new Error('form query failed');
 function submit(event) {
   event?.preventDefault();
   const formInput = {
     entryId: data.nextEntryId,
-    note: $note.value,
+    note: $form.value,
   };
   data.nextEntryId++;
   data.entries.push(formInput);
+  $form.reset();
+  writeData();
 }
-$note.addEventListener('submit', submit);
+$form.addEventListener('submit', submit);
