@@ -1,11 +1,17 @@
 header {
-  background-color: blueviolet;
+  background-color: rgb(86, 40, 129);
 }
 
-img,
-input,
-textarea {
+img {
   width: 100%;
+}
+
+input {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 label {
@@ -13,6 +19,23 @@ label {
 }
 
 button {
-  background-color: blueviolet;
+  background-color: rgb(91, 37, 141);
   color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  float: right;
+}
+
+header h1 {
+  color: white;
+  margin: 0;
+  padding: 1rem;
+}
+
+textarea {
+  width: 840px;
+  height: 160px;
 }
