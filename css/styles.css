@@ -2,6 +2,17 @@ header {
   background-color: blueviolet;
 }
 
-img {
+img,
+input,
+textarea {
   width: 100%;
+}
+
+label {
+  display: block;
+}
+
+button {
+  background-color: blueviolet;
+  color: white;
 }
