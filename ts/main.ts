@@ -85,4 +85,4 @@ function contentLoaded(): void {
     $ul.appendChild(x);
   }
 }
-$ul.addEventListener('DOMContentLoaded', contentLoaded);
+document.addEventListener('DOMContentLoaded', contentLoaded);
