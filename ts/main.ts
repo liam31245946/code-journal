@@ -44,41 +44,45 @@ function submit(event: Event): void {
 
 $form.addEventListener('submit', submit);
 
-// function renderEntry(entry: {
-//   entryId: number;
-//   note: string;
-//   title: string;
-//   url: string;
-// }): HTMLLIElement {
-//   const $li = document.createElement('li');
-//   const $row = document.createElement('div');
-//   $row.className = 'row';
-//   const $columnHalf = document.createElement('div');
-//   $columnHalf.className = 'column-half';
-//   const $img = document.createElement('img');
-//   $img.src = entry.url;
-//   $img.alt = entry.title;
+function renderEntry(entry: {
+  entryId: number;
+  note: string;
+  title: string;
+  url: string;
+}): HTMLLIElement {
+  const $li = document.createElement('li');
+  const $row = document.createElement('div');
+  $row.className = 'row';
+  const $columnHalf = document.createElement('div');
+  $columnHalf.className = 'column-half';
+  const $img = document.createElement('img');
+  $img.src = entry.url;
+  $img.alt = entry.title;
 
-//   const $text = document.createElement('div');
-//   $text.className = 'text';
-//   const $title = document.createElement('h4');
-//   $title.textContent = entry.title;
-//   const $note = document.createElement('p');
-//   $note.textContent = entry.note;
+  const $text = document.createElement('div');
+  $text.className = 'text';
+  const $title = document.createElement('h4');
+  $title.textContent = entry.title;
+  const $note = document.createElement('p');
+  $note.textContent = entry.note;
 
-//   $li.appendChild($row);
-//   $row.appendChild($columnHalf);
-//   $columnHalf.appendChild($img);
-//   $columnHalf.appendChild($text);
-//   $text.appendChild($title);
-//   $text.appendChild($note);
-//   return $li;
-// }
+  $li.appendChild($row);
+  $row.appendChild($columnHalf);
+  $columnHalf.appendChild($img);
+  $columnHalf.appendChild($text);
+  $text.appendChild($title);
+  $text.appendChild($note);
+  return $li;
+}
 
-// const $ul = document.querySelector('.group-list');
-// if (!$ul) throw new Error('ul query failed ');
-// function contentLoaded(): void {
-//   for (let i = 0; i < data.entries.length; i++) {}
-// }
-
-// $ul.addEventListener('DomContentLoaded', contentLoaded);
+const $ul = document.querySelector('.group-list');
+if (!$ul) throw new Error('ul query failed ');
+function contentLoaded(): void {
+  if (!$ul) throw new Error('ul query in function failed ');
+  for (let i = 0; i < data.entries.length; i++) {
+    const dataEntries = data.entries[i];
+    const x = renderEntry(dataEntries);
+    $ul.appendChild(x);
+  }
+}
+$ul.addEventListener('DOMContentLoaded', contentLoaded);

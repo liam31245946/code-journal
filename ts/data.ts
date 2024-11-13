@@ -1,7 +1,14 @@
+interface Entry {
+  entryId: number;
+  note: string;
+  title: string;
+  url: string;
+}
+
 interface Data {
   view: string;
-  entries: Input[];
-  editing: Input | null;
+  entries: Entry[];
+  editing: Entry | null;
   nextEntryId: number;
 }
 
