@@ -43,3 +43,7 @@ function submit(event: Event): void {
 }
 
 $form.addEventListener('submit', submit);
+
+// function renderEntry(entry);
+// {
+// }
