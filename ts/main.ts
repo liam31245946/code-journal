@@ -87,9 +87,43 @@ function contentLoaded(): void {
 }
 document.addEventListener('DOMContentLoaded', contentLoaded);
 
-// function toggleNoEntries() {
-//   const $noEntries = document.querySelector('#no-entries-data');
-//   if ($noEntries) {
-//     $noEntries.classList.toggle('.hidden');
-//   }
-// }
+function toggleNoEntries(): void {
+  const $noEntries = document.querySelector('#no-entries-data');
+  if ($noEntries) {
+    $noEntries.classList.toggle('.hidden');
+  }
+}
+toggleNoEntries();
+
+const $container = document.querySelector('.container');
+const $entryForm = document.querySelectorAll('#data-view-entry-form');
+const $entries = document.querySelectorAll('#data-view-entries');
+function viewSwap(event: Event): void {
+  if (!$entryForm) throw new Error('check data-view: entry form');
+  if (!$entries) throw new Error('check data-view: entries');
+  if (!$container) throw new Error('container query failed');
+  const $eventTarget = event.target as HTMLDivElement;
+  if ($eventTarget.matches('$entryForm')) {
+    for (let i = 0; i < $entries.length; i++) {
+      const iEntryForm = $entryForm[i];
+      if (iEntryForm === $eventTarget) {
+        iEntryForm.classList.add('hidden');
+      } else {
+        iEntryForm.classList.remove('hidden');
+      }
+    }
+  }
+  const $data = $eventTarget.getAttribute('data-view');
+  if (!$data) throw new Error('$data query failed');
+  for (let x = 0; x < $entries.length; x++) {
+    const iEntries = $entries[x] as HTMLElement;
+    const viewData = iEntries.getAttribute('data-view');
+
+    if (viewData === $data) {
+      iEntries.classList.remove('hidden');
+    } else {
+      iEntries.classList.add('hidden');
+    }
+  }
+}
+$container?.addEventListener('click', viewSwap);
