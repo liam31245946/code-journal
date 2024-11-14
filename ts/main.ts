@@ -86,3 +86,10 @@ function contentLoaded(): void {
   }
 }
 document.addEventListener('DOMContentLoaded', contentLoaded);
+
+// function toggleNoEntries() {
+//   const $noEntries = document.querySelector('#no-entries-data');
+//   if ($noEntries) {
+//     $noEntries.classList.toggle('.hidden');
+//   }
+// }
