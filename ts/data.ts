@@ -18,6 +18,7 @@ function writeData(): void {
 }
 
 const data: Data = readData();
+console.log(data);
 
 function readData(): Data {
   const getJSON = localStorage.getItem('data');

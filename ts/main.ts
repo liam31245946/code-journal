@@ -38,6 +38,12 @@ function submit(event: Event): void {
 
   data.nextEntryId++;
   data.entries.unshift(formInput);
+
+  const newEntry = renderEntry(formInput);
+  $ul?.prepend(newEntry);
+  viewSwap('entries');
+  toggleNoEntries();
+
   $form.reset();
   writeData();
 }
@@ -53,8 +59,10 @@ function renderEntry(entry: {
   const $li = document.createElement('li');
   const $row = document.createElement('div');
   $row.className = 'row';
-  const $columnHalf = document.createElement('div');
-  $columnHalf.className = 'column-half';
+  const $columnHalfImg = document.createElement('div');
+  $columnHalfImg.className = 'column-half';
+  const $columnHalfText = document.createElement('div');
+  $columnHalfText.className = 'column-half';
   const $img = document.createElement('img');
   $img.src = entry.url;
   $img.alt = entry.title;
@@ -67,9 +75,11 @@ function renderEntry(entry: {
   $note.textContent = entry.note;
 
   $li.appendChild($row);
-  $row.appendChild($columnHalf);
-  $columnHalf.appendChild($img);
-  $columnHalf.appendChild($text);
+  $row.appendChild($columnHalfImg);
+  $row.appendChild($columnHalfText);
+  $columnHalfImg.appendChild($img);
+  $row.appendChild($columnHalfText);
+  $columnHalfText.appendChild($text);
   $text.appendChild($title);
   $text.appendChild($note);
   return $li;
@@ -84,46 +94,44 @@ function contentLoaded(): void {
     const x = renderEntry(dataEntries);
     $ul.appendChild(x);
   }
+  viewSwap(data.view);
+  toggleNoEntries();
 }
 document.addEventListener('DOMContentLoaded', contentLoaded);
 
 function toggleNoEntries(): void {
   const $noEntries = document.querySelector('#no-entries-data');
-  if ($noEntries) {
-    $noEntries.classList.toggle('.hidden');
+  if (!$noEntries) throw new Error('no-entries-data query failed');
+  if (data.entries.length === 0) {
+    $noEntries?.classList.remove('hidden');
+  } else {
+    $noEntries?.classList.add('hidden');
   }
 }
 toggleNoEntries();
 
-const $container = document.querySelector('.container');
-const $entryForm = document.querySelectorAll('#data-view-entry-form');
-const $entries = document.querySelectorAll('#data-view-entries');
-function viewSwap(event: Event): void {
-  if (!$entryForm) throw new Error('check data-view: entry form');
-  if (!$entries) throw new Error('check data-view: entries');
-  if (!$container) throw new Error('container query failed');
-  const $eventTarget = event.target as HTMLDivElement;
-  if ($eventTarget.matches('$entryForm')) {
-    for (let i = 0; i < $entries.length; i++) {
-      const iEntryForm = $entryForm[i];
-      if (iEntryForm === $eventTarget) {
-        iEntryForm.classList.add('hidden');
-      } else {
-        iEntryForm.classList.remove('hidden');
-      }
-    }
-  }
-  const $data = $eventTarget.getAttribute('data-view');
-  if (!$data) throw new Error('$data query failed');
-  for (let x = 0; x < $entries.length; x++) {
-    const iEntries = $entries[x] as HTMLElement;
-    const viewData = iEntries.getAttribute('data-view');
+const $entryForm = document.querySelector(
+  '#data-view-entry-form',
+) as HTMLElement;
+const $entries = document.querySelector('#data-view-entries') as HTMLElement;
 
-    if (viewData === $data) {
-      iEntries.classList.remove('hidden');
-    } else {
-      iEntries.classList.add('hidden');
-    }
+function viewSwap(view: string): void {
+  if (!$entryForm || !$entries) throw new Error('View elements not found');
+
+  if (view === 'entry-form') {
+    $entryForm.classList.remove('hidden');
+    $entries.classList.add('hidden');
+  } else if (view === 'entries') {
+    $entries.classList.remove('hidden');
+    $entryForm.classList.add('hidden');
   }
+  data.view = view;
+  writeData();
 }
-$container?.addEventListener('click', viewSwap);
+
+const $clickNew = document.querySelector('#new-button');
+function click(event: Event): void {
+  event.preventDefault();
+  viewSwap('entry-form');
+}
+$clickNew?.addEventListener('click', click);
