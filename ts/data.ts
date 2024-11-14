@@ -1,7 +1,14 @@
+interface Entry {
+  entryId: number;
+  note: string;
+  title: string;
+  url: string;
+}
+
 interface Data {
   view: string;
-  entries: Input[];
-  editing: Input | null;
+  entries: Entry[];
+  editing: Entry | null;
   nextEntryId: number;
 }
 
@@ -11,6 +18,7 @@ function writeData(): void {
 }
 
 const data: Data = readData();
+console.log(data);
 
 function readData(): Data {
   const getJSON = localStorage.getItem('data');

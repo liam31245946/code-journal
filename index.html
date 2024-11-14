@@ -26,7 +26,7 @@
       </div>
     </header>
     <main class="container">
-      <div data-view="entry-form">
+      <div id="data-view-entry-form" data-view="entry-form">
         <form id="form">
           <div class="row">
             <div class="column-full">
@@ -59,7 +59,12 @@
           </div>
         </form>
       </div>
-      <div data-view="entries" class="hidden"></div>
+      <div id="data-view-entries" data-view="entries">
+        <button id="new-button">NEW</button>
+        <h1>Entries</h1>
+        <p id="no-entries-data">No entries recorded.</p>
+        <ul class="group-list"></ul>
+      </div>
     </main>
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>

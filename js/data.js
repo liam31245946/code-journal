@@ -4,6 +4,7 @@ function writeData() {
   localStorage.setItem('data', dataJSON);
 }
 const data = readData();
+console.log(data);
 function readData() {
   const getJSON = localStorage.getItem('data');
   if (getJSON) {
